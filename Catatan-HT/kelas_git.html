@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Kelas Git
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   body,table tr{background-color:#fff}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}pre code,table,table tr{padding:0}hr,pre code{background:0 0}body{font:16px Helvetica,Arial,sans-serif;line-height:1.4;color:#333;word-wrap:break-word;padding:10px 15px}strong,table tr th{font-weight:700}h1{font-size:2em;margin:.67em 0;text-align:center}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h1,h2,h3,h4,h5,h6{font-weight:700;position:relative;margin-top:15px;margin-bottom:15px;line-height:1.1}h1,h2{border-bottom:1px solid #eee}hr{height:0;margin:15px 0;overflow:hidden;border:0;border-bottom:1px solid #ddd}a{color:#4183C4}a.absent{color:#c00}ol,ul{padding-left:15px;margin-left:5px}ol{list-style-type:lower-roman}table tr{border-top:1px solid #ccc;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}img{max-width:100%}blockquote{padding:0 15px;border-left:4px solid #ccc}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;white-space:pre;border:none}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1 id="kelas-git-blankon">
+   Kelas Git BlankOn
+  </h1>
+    <pre><code>
+Jumat, 14 Oktober 2016 
+Pemateri: Herpiko Dwi Aguno 
+Pencatat: Raviyanto Ahmad
+    </code></pre>
+  <hr/>
+  <h4 id="memasang-dan-mengonfigurasi-git">
+   Memasang dan Mengonfigurasi Git
+  </h4>
+  <p>
+   Pertama-tama kita pasang Git di komputer kita dan kita konfigurasi.
+  </p>
+  <pre><code>$ sudo apt install git
+$ git config --global user.name "Nama saya"
+$ git config --global user.email "email@saya.com"
+</code></pre>
+  <p>
+   Di sini saya sebagai pencatat mengisi “<strong>Nama saya</strong>” dengan 
+   “<strong>Raviyanto Ahmad</strong>” dan "<strong>email@saya.com</strong>" dengan
+   "<strong>raviyanto@gmail.com</strong>".
+  </p>
+  <p>
+   Pemasangan dan konfigurasi Git tersebut kita cek.
+  </p>
+  <pre><code>$ git --version
+$ git config user.name
+$ git config user.email
+</code></pre>
+  <p>
+   Versi Git yang saya instal adalah versi 2.7.4. Hasil perintah
+   <strong>git config user.name</strong> adalah <strong>Raviyanto Ahmad</strong>. 
+   Hasil perintah <strong>git config user.email</strong> adalah 
+   <strong>raviyanto@gmail.com</strong>.
+  </p>
+  <h4 id="menginisiasi-proyek-baru">
+   Menginisiasi Proyek Baru
+  </h4>
+  <p>
+   Sekarang kita coba menginisiasi sebuah proyek baru.
+  </p>
+  <pre><code>$ mkdir puisi
+$ cd puisi
+$ git init
+</code></pre>
+  <p>
+   Hasil perintah
+   <strong>
+    git init
+   </strong>
+   adalah
+   <strong>
+    Initialized empty Git repository in /home/raviyanto/puisi/.git/</strong>.
+   Di direktori <strong>puisi</strong> ada direktori tersembunyi
+   <strong>.git</strong>.
+  </p>
+  <h4 id="melihat-status-proyek">
+   Melihat Status Proyek
+  </h4>
+  <p>
+   Mari kita lihat status proyek kita.
+  </p>
+  <pre><code>$ git status
+On branch master
+
+Initial commit
+
+nothing to commit (create/copy files and use "git add" to track)
+</code></pre>
+  <p>
+   Perintah
+   <strong>
+    git status
+   </strong>
+   digunakan untuk melihat status/kondisi direktori kerja kita. Apakah ada berkas yang sudah dimodifikasi dan belum dikomit (disahkan)? Apakah ada yang tertinggal? Apakah ada berkas baru? Semua bisa dicek di sini.
+  </p>
+  <p>
+   Hasil perintah
+   <strong>
+    git status
+   </strong>
+   di atas menunjukkan tidak ada pengesahan baru, yang ada pengesahan awal atau
+   <em>
+    initial commit.
+   </em>
+  </p>
+  <p>
+   Kita coba membuat berkas baru.
+  </p>
+  <pre><code>$ touch puisi1.txt
+</code></pre>
+  <p>
+   Sunting berkas tersebut menggunakan editor teks favorit masing-masing.
+  </p>
+  <pre><code>$ nano puisi1.txt
+</code></pre>
+  <p>
+   Tulis satu baris saja.
+  </p>
+  <pre><code>oh engkau yang nun jauh di sana
+</code></pre>
+  <p>
+   Simpan dan keluar dari editor. Kemudian jalankan
+   <strong>git status</strong>.
+  </p>
+  <pre><code>$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+    (use "git add &lt;file&gt;..." to include in what will be committed)
+
+          <span style="color:#F91130">puisi1.txt</span>
+
+nothing added to commit but untracked files present (use "git add" to track)
+</code></pre>
+  <p>
+   Berkas
+   <strong>
+    puisi1.txt
+   </strong>
+   berwarna merah. Ini berarti belum aman. Nah, di sini saya akan jelaskan alur Git. Alur Git itu ada tiga:
+   <br/>
+   1. Direktori kerja (<em>working directory</em>)
+   <br/>
+   2. Tempat penampungan (<em>stage</em>)
+   <br/>
+   3. Kepala versi (<em>head</em>)
+  </p>
+  <p>
+   <img src="/images/trees.png" alt="Alur Git">
+  </p>
+  <h4 id="memindahkan-direktori-ke-tempat-penampungan">
+   Memindahkan Direktori ke Tempat Penampungan
+  </h4>
+  <p>
+   Sekarang kita masih di direktori kerja, belum masuk tempat penampungan. Mari kita pindah ke tempat penampungan.
+  </p>
+  <pre><code>$ git add puisi1.txt
+</code></pre>
+  <p>
+   Perintah tersebut membawa kita ke tempat penampungan. Contoh perintah lain.
+  </p>
+  <pre><code>$ git add .
+$ git add --all
+$ git add *.txt
+</code></pre>
+  <p>
+   Kita lihat status berkas dengan perintah
+   <strong>git status</strong>.
+  </p>
+  <pre><code>$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+
+    new file:   puisi1.txt
+</code></pre>
+  <h4 id="mengesahkan-direktori">
+   Mengesahkan Direktori
+  </h4>
+  <p>
+   Nah, berkas sudah berada di penampungan. Tugas kita selanjutnya adalah melakukan komit atau pengesahan.
+  </p>
+  <pre><code>$ git commit -m "pesan komit"
+You need a passphrase to unlock the secret key for
+user: "Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;"
+4096-bit RSA key, ID 7EC72E69, created 2016-10-18
+
+[master (root-commit) fea7aa1] pesan komit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 puisi1.txt
+</code></pre>
+  <p>
+   Sekarang kita sudah pindah ke kepala versi (<em>head</em>). Mengapa di sini perlu ada tempat penampungan (<em>stage</em>)? Mengapa tidak langsung pindah ke kepala versi? Tujuannya adalah memudahkan kita memanajemen berkas yang lebih dari satu. Ada kalanya kita menyunting beberapa berkas untuk satu pengesahan. Tempat penampungan mempermudah pekerjaan kita.
+  </p>
+  <h4 id="melihat-daftar-pengesahan">
+   Melihat Daftar Pengesahan
+  </h4>
+  <p>
+   Sekarang kita memiliki satu pengesahan (komit). Kita dapat melihat daftarnya dengan perintah
+   <strong>git log</strong>.
+  </p>
+  <pre><code>$ git log
+commit fea7aa1719789464aac29aa7de875982194d89a3
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 23 11:02:18 2016 +0700
+
+    pesan komit
+</code></pre>
+  <p>
+   Mari kita sunting berkas <strong>puisi1.txt</strong>. Simpan, taruh di penampungan, lalu sahkan. Kita lihat daftar pengesahan yang kita lakukan.
+  </p>
+  <pre><code>$ git log
+commit 5676c71d12bfac1522a56cb6f2b05a1a3ca89e8a
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 23 11:56:07 2016 +0700
+
+    tambah satu baris
+
+commit fea7aa1719789464aac29aa7de875982194d89a3
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 23 11:02:18 2016 +0700
+
+    pesan komit
+</code></pre>
+  <p>
+   Setiap pengesahan punya nomor identitas. Pengesahan pertama bernomor
+   <strong>fea7</strong>. Pengesahan kedua bernomor <strong>5676</strong>.
+  </p>
+  <h4 id="berpindah-pengesahan">
+   Berpindah Pengesahan
+  </h4>
+  <p>
+   Kita ingin pindah ke pengesahan pertama.
+  </p>
+  <pre><code>$ git checkhout fea7
+Note: checking out 'fea7'.
+
+You are in 'detached HEAD' state. You can look around, make experimental changes and commit them, and you can discard any commits you make in this state without impacting any branches by performing another checkout.
+If you want to create a new branch to retain commits you create, you may do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b &lt;new-branch-name&gt;
+
+HEAD is now at fea7aa1... pesan komit
+</code></pre>
+  <p>
+   Artinya, kita tidak berada di cabang mana pun. Status kepala versi kita mengambang, lepas dari cabang mana pun. Mari kita cek cabang yang ada.
+  </p>
+  <pre><code>$ git branch
+* (HEAD detached at fea7aa1)
+  master
+</code></pre>
+  <p>
+   Sebelumnya kita berada di cabang <strong>master</strong>. Setelah berpindah ke pengesahan pertama, kita berada di cabang yang mengambang. Ini tidak aman. Kita perlu membuat cabang yang sah. Perintah
+   <strong>
+    checkout
+   </strong>
+   tidak hanya berfungsi berpindah pengesahan atau pencabangan, tapi juga membuat pencabangan baru.
+  </p>
+  <pre><code>$ git checkout -b pesanawal
+</code></pre>
+  <p>
+   Artinya, dari pengesahan tersebut, saya membuat pencabangan baru. Nama cabangnya
+   <strong>pesanawal</strong>. Di situ ada opsi -b (<em>branch</em>). Sekarang kita lihat daftar cabang lagi.
+  </p>
+  <pre><code>$ git branch
+   master
+* pesanawal
+</code></pre>
+  <p>
+   Kita berada di cabang <strong>pesanawal</strong>. Dari mana kita tahu? Ada tanda bintang (*) di depannya.
+  </p>
+  <p>
+   Oke, kita lanjut. Cabang-cabang ini bisa kita gabung (<em>merge</em>). Kita sekarang punya dua cabang, yaitu
+   <strong>master</strong> dan <strong>pesanawal</strong>. Kita kembali ke cabang
+   <strong>master</strong>.
+  </p>
+  <pre><code>$ git checkout master
+</code></pre>
+  <p>
+   Setelah berada di
+   <strong>
+    master
+   </strong>
+   dan berada di pengesahan terakhir, kita buat cabang baru. Namanya
+   <strong>pesankedua</strong>.
+  </p>
+  <pre><code>  $ git checkout -b pesankedua
+</code></pre>
+  <p>
+   Kedua cabang ini–
+   <strong>
+    master
+   </strong>
+   dan
+   <strong>
+    pesankedua
+   </strong>
+   –statusnya sama, pengesahannya sama. Anggap saja
+   <strong>
+    master
+   </strong>
+   adalah cabang pengembangan utama, yang resmi dan bakal rilis. Cabang
+   <strong>
+    pesankedua
+   </strong>
+   bersifat eksperimen. Kita membuat cabang baru supaya kita fokus di situ. Biarkan
+   <strong>
+    master
+   </strong>
+   bersih.
+  </p>
+  <p>
+   Sekarang kita berada di cabang
+   <strong>pesankedua</strong>. Mari kita sunting puisinya lalu simpan.
+  </p>
+  <pre><code>$ git status
+On branch pesankedua
+Changes not staged for commit:
+    (use "git add &lt;file&gt;..." to update what will be committed)
+    (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+          modified:   puisi1.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>
+  <p>
+   Statusnya belum aman karena belum masuk ke penampungan dan pengesahan.
+  </p>
+  <pre><code>
+$ git add --all
+$ git commit -m "pesan kedua"
+$ git log
+</code></pre>
+  <p>
+   Sekarang kita punya tiga pengesahan.
+  </p>
+  <pre><code>commit 6a654ef35830d3eb35b3427c85a7de6a96d1e2ae
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 30 21:20:39 2016 +0700
+
+    pesan kedua
+
+commit 5676c71d12bfac1522a56cb6f2b05a1a3ca89e8a
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 23 11:56:07 2016 +0700
+
+    tambah satu baris
+
+commit fea7aa1719789464aac29aa7de875982194d89a3
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sun Oct 23 11:02:18 2016 +0700
+
+    pesan komit
+</code></pre>
+  <p>
+   Pada cabang
+   <strong>
+    pesankedua
+   </strong>
+   kita punya tiga pengesahan. Ini lebih  baru daripada cabang
+   <strong>master</strong>. Nah, ceritanya kita ingin menggabungkan kedua cabang ini. Kita bawa fitur baru di cabang <strong>pesankedua</strong> ke <strong>master</strong>.
+  </p>
+  
+  <h4 id="menggabungkan-pencabangan">
+   Menggabungkan Pencabangan
+  </h4>
+  <p>
+   Sebelum kita gabungkan, ada baiknya kita cek dulu.
+  </p>
+  <pre><code>$ git diff master
+
+diff --git a/puisi1.txt b/puisi1.txt
+index 8466d82..23ff8ff 100644
+--- a/puisi1.txt
++++ b/puisi1.txt
+@@ -1,2 +1,3 @@
+ oh engkau yang nun jauh di sana
+ datanglah ke sini bersama angin
++bercengkerama di pantai cita
+</code></pre>
+  <p>
+   Yang bertanda
+   <strong>
+    +
+   </strong>
+   dan
+   <strong>
+    -
+   </strong>
+   menunjukkan perubahan. Tanda
+   <strong>
+    +
+   </strong>
+   artinya ada penambahan baris. Tanda
+   <strong>
+    -
+   </strong>
+   artinya ada pengurangan baris. Sekarang kita mau gabung
+   <strong>
+    pesankedua
+   </strong>
+   ke
+   <strong>master</strong>. Kita pindah terlebih dulu ke <strong>master</strong>.
+   Lalu kita gabungkan.
+  </p>
+  <pre><code>$ git checkout master
+$ git merge pesankedua
+</code></pre>
+  <p>
+   Perintah
+   <strong>
+    git merge
+   </strong>
+   tersebut hasilnya sebagai berikut.
+  </p>
+  <pre><code>Updating 5676c71..6a654ef
+Fast-forward
+ puisi1.txt | 1 +
+ 1 file changed, 1 insertion(+)
+</code></pre>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>
