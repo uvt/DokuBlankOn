@@ -3,7 +3,9 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--><![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> 
+<!--<![endif]-->
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Kelas BlankOn" />
 	<meta name="keywords" content="kelas BlankOn, kelas Git" />
-	<meta name="author" content="Raviyanto Ahmad" />
+	<meta name="author" content="Novera Kresnawati" />
 
   
   	<!-- Facebook and Twitter integration -->
@@ -70,7 +72,7 @@
 					<div class="col-md-8 col-sm-8 col-xs-12">
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-6 work animate-box">
-								<a href="Catatan/kelas_git.html" title="Kelas Git"><img src="images/git.jpeg" alt="Kelas Git BlankOn" class="img-responsive"></a>
+								<a href="Catatan-HT/kelas_git.html" title="Kelas Git"><img src="images/git.jpeg" alt="Kelas Git BlankOn" class="img-responsive"></a>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 work animate-box">
 								<a href="images/img_2.jpg" class="image-popup" title="Title Of Work Here"><img src="images/img_2.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" class="img-responsive"></a>
