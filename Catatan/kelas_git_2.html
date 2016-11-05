@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Kelas Git BlankOn
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   body,table tr{background-color:#fff}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}pre code,table,table tr{padding:0}hr,pre code{background:0 0}body{font:16px Helvetica,Arial,sans-serif;line-height:1.4;color:#333;word-wrap:break-word;padding:10px 15px}strong,table tr th{font-weight:700}h1{font-size:2em;margin:.67em 0;text-align:center}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h1,h2,h3,h4,h5,h6{font-weight:700;position:relative;margin-top:15px;margin-bottom:15px;line-height:1.1}h1,h2{border-bottom:1px solid #eee}hr{height:0;margin:15px 0;overflow:hidden;border:0;border-bottom:1px solid #ddd}a{color:#4183C4}a.absent{color:#c00}ol,ul{padding-left:15px;margin-left:5px}ol{list-style-type:lower-roman}table tr{border-top:1px solid #ccc;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}img{max-width:100%}blockquote{padding:0 15px;border-left:4px solid #ccc}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;white-space:pre;border:none}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1 id="kelas-git-blankon-bagian-ii">
+   Kelas Git BlankOn Bagian II
+  </h1>
+  <pre><code>Jumat, 14 Oktober 2016 
+Pemateri: Herpiko Dwi Aguno 
+Pencatat: Raviyanto Ahmad
+</code></pre>
+  <h4 id="mengatasi-konflik">
+   Mengatasi Konflik
+  </h4>
+  <p>
+   Kita keluar dari direktori
+   <strong>puisi</strong>. Kita buat direktori baru.
+  </p>
+  <pre><code>$ mkdir konflik
+$ cd konflik
+$ git init
+$ nano konflik1.txt
+</code></pre>
+  <p>
+   Isi berkas
+   <strong>
+    konflik1.txt
+   </strong>
+   dengan tiga baris kata.
+  </p>
+  <pre><code>Selamat
+pagi
+Bandung
+</code></pre>
+  <p>
+   Simpan, masukkan berkas dalam tempat penampungan, lalu sahkan. Pesan pengesahan bebas.
+  </p>
+  <pre><code>$ git add .
+$ git commit -m "Pesan awal tentang konflik"
+</code></pre>
+  <p>
+   Sunting lagi berkasnya. Baris kedua ganti dengan kata
+   <em>
+    siang
+   </em>
+   .
+  </p>
+  <pre><code>Selamat
+siang
+Bandung
+</code></pre>
+  <p>
+   Simpan, tampung, dan sahkan.
+  </p>
+  <pre><code>$ git add .
+$ git commit -m "Pesan kedua tentang konflik"
+</code></pre>
+  <p>
+   Sekarang dari
+   <strong>
+    git log
+   </strong>
+   kita punya dua pengesahan.
+  </p>
+  <pre><code>commit b66b046ac1867a17505f366a0cc4d6aa2b1b53fb
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sat Nov 5 08:04:34 2016 +0700
+
+    Pesan kedua tentang konflik
+
+commit a6c48c7eeef02f58b890c901478f4f280b6895bc
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sat Nov 5 07:57:34 2016 +0700
+
+    Pesan awal tentang konflik
+</code></pre>
+  <p>
+   Kita pindah ke pengesahan pertama. Buat pencabangan baru. Namanya
+   <strong>sore</strong>.
+  </p>
+  <pre><code>$ git checkout a6c4
+$ git checkout -b sore
+</code></pre>
+  <p>
+   Sunting berkas. Baris kedua kita ganti dengan kata
+   <em>sore</em>.
+  </p>
+  <pre><code>Selamat
+sore
+Bandung
+</code></pre>
+  <p>
+   Simpan, tampung, dan sahkan.
+  </p>
+  <pre><code>$ git add .
+$ git commit -m "Ganti kata pagi dengan kata sore"
+</code></pre>
+  <p>
+   Di cabang
+   <strong>
+    sore
+   </strong>
+   ini kita punya dua pengesahan.
+  </p>
+  <pre><code>commit 32f53a391ab2cdf582b668e76493c1e99d5b3ae8
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sat Nov 5 08:35:28 2016 +0700
+
+    Ganti kata pagi dengan kata sore
+
+commit a6c48c7eeef02f58b890c901478f4f280b6895bc
+Author: Raviyanto Ahmad &lt;raviyanto@gmail.com&gt;
+Date:   Sat Nov 5 07:57:34 2016 +0700
+
+    Pesan awal tentang konflik
+</code></pre>
+  <p>
+   Sekarang kita punya dua cabang–<strong>master</strong> dan <strong>sore</strong>. Masing-masing cabang punya dua pengesahan. Pengesahan pertama sama (nomor identitas
+   <strong>
+    master
+   </strong>
+   dan
+   <strong>
+    sore
+   </strong>
+   sama, yaitu
+   <em>
+    a6c4
+   </em>
+   ). Pengesahan kedua berbeda (nomor identitas
+   <strong>master</strong>: <em>b66b</em> dan nomor identitas
+   <strong>sore</strong>:
+   <em>32f5</em>).
+  </p>
+  <p>
+   Konflik terjadi apabila ada baris yang sama tersunting oleh cabang yang berbeda. Seperti yang kita tahu tadi, baris kedua itu disunting oleh cabang yang berbeda. Tidak peduli penyuntingan itu dilakukan oleh jumlah pengesahan yang berbeda di masing-masing cabang.
+  </p>
+  <p>
+   Apabila ada perbedaan di baris yang sama, terjadi konflik. Apabila perubahannya berada di baris yang berbeda, tidak akan konflik. Git cukup pintar mendeteksi itu, tetapi tidak cukup pintar memutuskan, manakah yang benar:
+   <em>
+    siang
+   </em>
+   atau
+   <em>
+    sore
+   </em>
+   ?
+  </p>
+  <p>
+   Mari kita pindah ke cabang <strong>master</strong>, lalu kita gabungkan kedua cabang.
+  </p>
+  <pre><code>$ git checkout master
+$ git merge sore
+</code></pre>
+  <p>
+   Apa yang terjadi?
+  </p>
+  <pre><code>Auto-merging konflik1.txt
+CONFLICT (content): Merge conflict in konflik1.txt
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+  <p>
+   Terjadi konflik. Mari kita buka berkasnya dengan editor teks.
+  </p>
+  <pre><code>Selamat
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+siang
+=======
+sore
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; sore
+Bandung
+</code></pre>
+  <p>
+   Tugas kita adalah memilih mana yang benar. Kita singkirkan yang salah. Misal yang benar adalah kata
+   <em>
+    sore
+   </em>
+   yang berada di bawah tanda ===. Kita singkirkan tanda-tanda dan kata yang salah.
+  </p>
+  <pre><code> &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 
+ siang
+ =======
+
+ &gt;&gt;&gt;&gt;&gt;&gt;&gt; sore
+</code></pre>
+  <p>
+   Hasil penyuntingannya sebagai berikut.
+  </p>
+  <pre><code>Selamat
+sore
+Bandung
+</code></pre>
+  <p>
+   Kita simpan berkasnya, tampung, lalu sahkan. Lihat status direktori kerja kita dengan
+   <strong>git status</strong>.
+  </p>
+  <pre><code>On branch master
+nothing to commit, working directory clean
+</code></pre>
+  <p>
+   Nah, konflik terselesaikan.
+  </p>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>
